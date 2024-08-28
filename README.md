@@ -1,5 +1,7 @@
 # AI-Weekly YouTube Channel Summary Service
 AI Weekly YT Summary Using Gemini, OpenAI, Claude.
+
+
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi&logoColor=white)![LangChain](https://img.shields.io/badge/LangChain-00BFFF?style=for-the-badge&logo=langchain&logoColor=white)![OpenAI](https://img.shields.io/badge/OpenAI-8C1D40?style=for-the-badge&logo=openai&logoColor=white)![Claude](https://img.shields.io/badge/Claude-00A3E0?style=for-the-badge&logo=anthropic&logoColor=white)![Gemini](https://img.shields.io/badge/google-4285F4?style=for-the-badge&logo=google&logoColor=white)![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 
 This project provides a FastAPI-based service for summarizing YouTube channels. It encompasses several key components for handling user subscriptions, fetching YouTube data, generating summaries with AI, and sending email updates.
