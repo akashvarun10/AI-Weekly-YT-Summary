@@ -31,7 +31,7 @@ def extract_transcript_details_and_generate_summary(youtube_video_url: str) -> t
         try:
             chat = ChatOpenAI(model_name="gpt-4o-mini", openai_api_key=settings.OPENAI_API_KEY)
             response = chat([HumanMessage(content=f"Summarize the following YouTube video transcript:\n\n{transcript}")])
-            return response.content, "OpenAI (GPT-4o-mini)"
+            return response.content, "OpenAI (gpt-4o-mini)"
         except Exception as openai_error:
             logging.error(f"OpenAI error: {openai_error}")
 

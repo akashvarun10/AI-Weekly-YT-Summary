@@ -9,6 +9,7 @@ from services.email_service import send_email
 from services.youtube_service import get_channel_id, get_latest_video_url
 from services.ai_service import extract_transcript_details_and_generate_summary
 from controllers.user_controller import users_collection
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 app = FastAPI()
@@ -36,7 +37,7 @@ def weekly_update():
 
 @app.on_event("startup")
 async def startup_event():
-    schedule.every().wednesday.at("10:43").do(weekly_update)
+    schedule.every().wednesday.at("11:52").do(weekly_update)
     logging.info("Scheduled weekly update for Mondays at 09:00")
 
     def run_scheduler():
