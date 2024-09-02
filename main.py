@@ -9,10 +9,7 @@ from services.email_service import send_email
 from services.youtube_service import get_channel_id, get_latest_video_url
 from services.ai_service import extract_transcript_details_and_generate_summary
 from controllers.user_controller import users_collection
-
 from fastapi.middleware.cors import CORSMiddleware
-
-
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
