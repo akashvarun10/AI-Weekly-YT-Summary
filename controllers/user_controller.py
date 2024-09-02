@@ -35,3 +35,4 @@ async def get_user(email: str):
     except Exception as e:
         logging.error(f"Error in get_user: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
