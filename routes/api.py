@@ -21,3 +21,8 @@ async def get_user_route(email: str):
 @router.get("/fetch_channels")
 async def fetch_channels_route(query: str):
     return await fetch_channels(query)
+
+@router.get("/users")
+async def get_all_users():
+    users = await users_collection.find().to_list(None)
+    return users

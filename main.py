@@ -10,11 +10,23 @@ from services.youtube_service import get_channel_id, get_latest_video_url
 from services.ai_service import extract_transcript_details_and_generate_summary
 from controllers.user_controller import users_collection
 
+from fastapi.middleware.cors import CORSMiddleware
+
+
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 app = FastAPI()
 
 app.include_router(router)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Or specify allowed origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Or specify allowed methods
+    allow_headers=["*"],  # Or specify allowed headers
+)
 
 async def weekly_update():
     logging.info("Starting weekly update")
@@ -38,7 +50,7 @@ async def weekly_update():
 @app.on_event("startup")
 async def startup_event():
     loop = asyncio.get_event_loop()
-    schedule.every().sunday.at("20:41").do(lambda: asyncio.run_coroutine_threadsafe(weekly_update(), loop))
+    schedule.every().sunday.at("21:05").do(lambda: asyncio.run_coroutine_threadsafe(weekly_update(), loop))
     logging.info("Scheduled weekly update for Sundays at 20:40 (ET)")
 
     def run_scheduler():
