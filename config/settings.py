@@ -18,6 +18,7 @@ class Settings:
     GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
     ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+    FRONTEND_URL = os.getenv("FRONTEND_URL")
 
     def __init__(self):
         if self.MONGODB_URI:

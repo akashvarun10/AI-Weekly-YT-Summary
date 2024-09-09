@@ -10,6 +10,8 @@ from services.youtube_service import get_channel_id, get_latest_video_url
 from services.ai_service import extract_transcript_details_and_generate_summary
 from controllers.user_controller import users_collection
 from fastapi.middleware.cors import CORSMiddleware
+import warnings
+warnings.filterwarnings("ignore")
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -19,10 +21,11 @@ app.include_router(router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Or specify allowed origins
+    # allow_origins = ["*"],
+    allow_origins=["http://localhost:5173"],  # Update with your React frontend URL
     allow_credentials=True,
-    allow_methods=["*"],  # Or specify allowed methods
-    allow_headers=["*"],  # Or specify allowed headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 async def weekly_update():
@@ -63,3 +66,4 @@ if __name__ == "__main__":
     import uvicorn
     logging.info("Starting the FastAPI application")
     uvicorn.run(app, host="0.0.0.0", port=8000)
+    

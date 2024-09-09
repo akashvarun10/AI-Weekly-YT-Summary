@@ -2,6 +2,7 @@
 from googleapiclient.discovery import build
 from config.settings import settings
 import logging
+from fastapi import HTTPException  # Add this import
 
 youtube = build("youtube", "v3", developerKey=settings.YOUTUBE_API_KEY)
 
@@ -38,14 +39,36 @@ def get_latest_video_url(channel_id: str) -> str:
         logging.error(f"Error getting latest video URL for channel {channel_id}: {e}")
         return None
 
+# def fetch_channels(query: str):
+#     try:
+#         search_response = youtube.search().list(q=query, type="channel", part="snippet", maxResults=5).execute()
+#         channels = [
+#             {"name": item["snippet"]["title"], "id": item["snippet"]["channelId"]}
+#             for item in search_response["items"]
+#         ]
+#         return channels
+#     except Exception as e:
+#         logging.error(f"Error in fetch_channels: {e}")
+#         raise
+
 def fetch_channels(query: str):
     try:
-        search_response = youtube.search().list(q=query, type="channel", part="snippet", maxResults=5).execute()
+        request = youtube.search().list(
+            q=query,
+            type="channel",
+            part="snippet",
+            maxResults=5
+        )
+        response = request.execute()
         channels = [
-            {"name": item["snippet"]["title"], "id": item["snippet"]["channelId"]}
-            for item in search_response["items"]
+            {
+                "name": item["snippet"]["title"],
+                "id": item["snippet"]["channelId"],
+                "profilePicture": item["snippet"]["thumbnails"]["default"]["url"]  # Add profile picture URL
+            }
+            for item in response["items"]
         ]
         return channels
     except Exception as e:
         logging.error(f"Error in fetch_channels: {e}")
-        raise
+        raise HTTPException(status_code=500, detail="Error fetching channels")
