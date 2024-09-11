@@ -72,3 +72,4 @@ def fetch_channels(query: str):
     except Exception as e:
         logging.error(f"Error in fetch_channels: {e}")
         raise HTTPException(status_code=500, detail="Error fetching channels")
+

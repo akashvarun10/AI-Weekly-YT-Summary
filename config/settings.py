@@ -30,7 +30,6 @@ settings = Settings()
 
 # Attempt to connect to MongoDB
 try:
-    # We'll assume you're using pymongo to connect
     from pymongo import MongoClient
     client = MongoClient(settings.MONGODB_URI)
     client.admin.command('ping')
